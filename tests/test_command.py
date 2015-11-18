@@ -45,3 +45,12 @@ class TestCreateMainParser(unittest.TestCase):
         with mock.patch.object(parser, 'print_help') as print_help:
             self.assertRaises(SystemExit, parser.parse_args, ['-h'])
         print_help.assert_called_once_with()
+
+    @staticmethod
+    def test_without_argments():
+        """Expect 'run' method that showing help."""
+        parser = yanico.command.create_main_parser()
+        args = parser.parse_args([])
+        with mock.patch.object(parser, 'print_help') as print_help:
+            args.run(args)
+        print_help.assert_called_once_with()
