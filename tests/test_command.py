@@ -31,3 +31,10 @@ class TestCreateMainParser(unittest.TestCase):
         print_message.assert_called_once_with('yanico version ' +
                                               yanico.__version__ + '\n',
                                               mock.ANY)
+
+    def test_help_long(self):
+        """Parse '--help' option."""
+        parser = yanico.command.create_main_parser()
+        with mock.patch.object(parser, 'print_help') as print_help:
+            self.assertRaises(SystemExit, parser.parse_args, ['--help'])
+        print_help.assert_called_once_with()
