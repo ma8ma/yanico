@@ -14,7 +14,20 @@
 #  limitations under the License.
 
 import unittest
+import unittest.mock as mock
+
+import yanico
+import yanico.command
 
 
 class TestCreateMainParser(unittest.TestCase):
     """yanico.command.create_main_parser() test."""
+
+    def test_version(self):
+        """Parse '--version' option."""
+        parser = yanico.command.create_main_parser()
+        with mock.patch.object(parser, '_print_message') as print_message:
+            self.assertRaises(SystemExit, parser.parse_args, ['--version'])
+        print_message.assert_called_once_with('yanico version ' +
+                                              yanico.__version__ + '\n',
+                                              mock.ANY)
