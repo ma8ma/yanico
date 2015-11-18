@@ -38,3 +38,10 @@ class TestCreateMainParser(unittest.TestCase):
         with mock.patch.object(parser, 'print_help') as print_help:
             self.assertRaises(SystemExit, parser.parse_args, ['--help'])
         print_help.assert_called_once_with()
+
+    def test_help_short(self):
+        """Parse '-h' option."""
+        parser = yanico.command.create_main_parser()
+        with mock.patch.object(parser, 'print_help') as print_help:
+            self.assertRaises(SystemExit, parser.parse_args, ['-h'])
+        print_help.assert_called_once_with()
