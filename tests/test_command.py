@@ -54,3 +54,7 @@ class TestCreateMainParser(unittest.TestCase):
         with mock.patch.object(parser, 'print_help') as print_help:
             args.run(args)
         print_help.assert_called_once_with()
+
+
+class TestBuildSubparsers(unittest.TestCase):
+    """yanico.command.build_subparsers() test."""
