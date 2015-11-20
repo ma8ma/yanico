@@ -13,6 +13,7 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
+import argparse
 import unittest
 import unittest.mock as mock
 
@@ -76,3 +77,14 @@ class TestBuildSubparsers(unittest.TestCase):
         entry_point.name = 'stub'
         entry_point.load.return_value = register
         return entry_point
+
+    @mock.patch('pkg_resources.iter_entry_points')
+    def test_stub_command(self, iter_entry_points):
+        """Register command returning two times numbers."""
+        iter_entry_points.return_value = [self._init_stub_command()]
+
+        parser = argparse.ArgumentParser()
+        yanico.command.build_subparsers(parser)
+        args = parser.parse_args(['stub', '21'])
+        self.assertEqual(args.run(args), 42)
+        iter_entry_points.assert_called_once_with('yanico.commands')
