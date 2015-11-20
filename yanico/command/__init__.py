@@ -14,6 +14,7 @@
 #  limitations under the License.
 
 import argparse
+import pkg_resources
 
 import yanico
 
@@ -25,3 +26,12 @@ def create_main_parser():
                         version='yanico version '+yanico.__version__)
     parser.set_defaults(run=lambda _: parser.print_help())
     return parser
+
+
+def build_subparsers(parser):
+    """Register command from setuptools plugins."""
+    # pylint: disable=no-member
+    subparsers = parser.add_subparsers(title='Commands')
+    for entry in pkg_resources.iter_entry_points('yanico.commands'):
+        register = entry.load()
+        register(entry.name, subparsers)
