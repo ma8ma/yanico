@@ -58,3 +58,21 @@ class TestCreateMainParser(unittest.TestCase):
 
 class TestBuildSubparsers(unittest.TestCase):
     """yanico.command.build_subparsers() test."""
+
+    @staticmethod
+    def _init_stub_command():
+        """Return entry point having stub command."""
+        def run(args):
+            """Command body."""
+            return args.n * 2
+
+        def register(command_name, subparsers):
+            """Command registrant."""
+            parser = subparsers.add_parser(command_name)
+            parser.add_argument('n', type=int)
+            parser.set_defaults(run=run)
+
+        entry_point = mock.Mock()
+        entry_point.name = 'stub'
+        entry_point.load.return_value = register
+        return entry_point
