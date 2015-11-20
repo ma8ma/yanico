@@ -88,3 +88,16 @@ class TestBuildSubparsers(unittest.TestCase):
         args = parser.parse_args(['stub', '21'])
         self.assertEqual(args.run(args), 42)
         iter_entry_points.assert_called_once_with('yanico.commands')
+
+    @mock.patch('pkg_resources.iter_entry_points')
+    def test_without_arguments(self, iter_entry_points):
+        """Expect 'run' method that showing help."""
+        iter_entry_points.return_value = [self._init_stub_command()]
+
+        parser = yanico.command.create_main_parser()
+        yanico.command.build_subparsers(parser)
+        args = parser.parse_args([])
+        with mock.patch.object(parser, 'print_help') as print_help:
+            args.run(args)
+        print_help.assert_called_once_with()
+        iter_entry_points.assert_called_once_with('yanico.commands')
