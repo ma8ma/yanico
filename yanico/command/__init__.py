@@ -35,3 +35,11 @@ def build_subparsers(parser):
     for entry in pkg_resources.iter_entry_points('yanico.commands'):
         register = entry.load()
         register(entry.name, subparsers)
+
+
+def main():
+    """Command entry point."""
+    parser = create_main_parser()
+    build_subparsers(parser)
+    args = parser.parse_args()
+    return args.run(args)
