@@ -21,7 +21,9 @@ import yanico
 
 def create_main_parser():
     """Return command argument parser."""
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(
+        description=yanico.__description__,
+    )
     parser.add_argument('--version', action='version',
                         version='yanico version '+yanico.__version__)
     parser.set_defaults(run=lambda _: parser.print_help())
