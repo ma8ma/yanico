@@ -101,3 +101,7 @@ class TestBuildSubparsers(unittest.TestCase):
             args.run(args)
         print_help.assert_called_once_with()
         iter_entry_points.assert_called_once_with('yanico.commands')
+
+
+class TestMain(unittest.TestCase):
+    """yanico.command.main() test."""
