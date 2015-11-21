@@ -1,5 +1,9 @@
 yanico
 ======
+
+.. image:: https://travis-ci.org/ma8ma/yanico.svg
+    :target: https://travis-ci.org/ma8ma/yanico
+
 Yet Another Niconico-douga Command-line Interface
 
 
