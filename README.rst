@@ -19,6 +19,7 @@ Description
 .. _`ニコニコ動画`: http://www.nicovideo.jp/
 .. _`Apache 2.0`: http://www.apache.org/licenses/LICENSE-2.0
 
+
 Feature
 -------
 * **yan** コマンドの体系は git や mercurial のようなサブコマンドの集合です。
