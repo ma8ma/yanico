@@ -23,6 +23,7 @@ def create_main_parser():
     """Return command argument parser."""
     parser = argparse.ArgumentParser(
         description=yanico.__description__,
+        prog='yan',
     )
     parser.add_argument('--version', action='version',
                         version='yanico version '+yanico.__version__)
