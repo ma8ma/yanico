@@ -105,3 +105,13 @@ class TestBuildSubparsers(unittest.TestCase):
 
 class TestMain(unittest.TestCase):
     """yanico.command.main() test."""
+
+    @staticmethod
+    def _init_stub_parser():
+        """Return parser having command that returns integer."""
+        parser = argparse.ArgumentParser()
+        subparsers = parser.add_subparsers()
+        stub_parser = subparsers.add_parser('stub')
+        stub_parser.add_argument('n', type=int)
+        stub_parser.set_defaults(run=lambda args: args.n)
+        return parser
