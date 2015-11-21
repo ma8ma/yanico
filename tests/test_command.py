@@ -115,3 +115,11 @@ class TestMain(unittest.TestCase):
         stub_parser.add_argument('n', type=int)
         stub_parser.set_defaults(run=lambda args: args.n)
         return parser
+
+    @mock.patch('yanico.command.create_main_parser')
+    @mock.patch('yanico.command.build_subparsers')
+    @mock.patch('sys.argv', new=['', 'stub', '3'])
+    def test_return_value(self, _, create_main_parser):
+        """Except main function returns specified integer."""
+        create_main_parser.return_value = self._init_stub_parser()
+        self.assertEqual(yanico.command.main(), 3)
