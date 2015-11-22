@@ -1,0 +1,17 @@
+language: python
+python:
+  - "3.3"
+  - "3.4"
+  - "3.5"
+cache: pip
+install:
+  - pip install hacking flake8-docstrings pep8-naming
+  - pip install .
+  - export PATH=$PATH:$HOME/.local/bin
+script:
+  - flake8 --verbose tests/ yanico/ setup.py
+  - python setup.py test
+  - python -m yanico --version
+  - python -m yanico --help
+  - yan --version
+  - yan --help

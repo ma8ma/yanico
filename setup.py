@@ -36,6 +36,7 @@ setup(
     test_suite='tests',
     install_requires=[],
     entry_points={
+        'console_scripts': ['yan = yanico.command.__init__:main'],
     },
     classifiers=[
         'Development Status :: 1 - Planning',

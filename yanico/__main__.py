@@ -1,4 +1,4 @@
-"""Yet Another Niconico-douga Command-line Interface."""
+"""Command entry point."""
 #  Copyright 2015 Masayuki Yamamoto
 #
 #  Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,8 +13,9 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-__author__ = 'Masayuki Yamamoto'
-__copyright__ = 'Copyright 2015 Yamamoto Masayuki'
-__description__ = __doc__
-__license__ = 'Apache 2.0'
-__version__ = '0.1.0a1'
+import sys
+
+import yanico.command
+
+if __name__ == '__main__':
+    sys.exit(yanico.command.main())
