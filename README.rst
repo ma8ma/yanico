@@ -1,6 +1,10 @@
 yanico
 ======
 
+.. image:: https://img.shields.io/pypi/v/yanico.svg
+    :target: https://pypi.python.org/pypi/yanico/
+.. image:: https://img.shields.io/pypi/pyversions/yanico.svg
+    :target: https://pypi.python.org/pypi/yanico/
 .. image:: https://travis-ci.org/ma8ma/yanico.svg
     :target: https://travis-ci.org/ma8ma/yanico
 
@@ -45,15 +49,15 @@ Requirement
 
 Install
 -------
-現在は準備中でまだインストールできません。
-
-PYPI のリリース版をインストールする::
+PYPI_ のリリース版をインストールする::
 
     $ pip install yanico
 
 リポジトリの最新版をインストールする::
 
     $ pip install git+https://github.com/ma8ma/yanico
+
+.. _PYPI: https://pypi.python.org/pypi/yanico/
 
 
 Usage
@@ -66,7 +70,7 @@ Usage
 Changes
 -------
 
-**v0.1.0a1 (unreleased)**
+**v0.1.0a1 (2015-11-24)**
 
 * コマンド **yan** を追加しました。
   このコマンドはサブコマンドの追加による機能拡張が可能です。
@@ -76,14 +80,11 @@ Changes
 
 TODO
 ----
-* PYPI_ に登録して公開する (v0.1.0a1)
 * 利用するブラウザを紐付けする **attach** コマンドを追加 (v0.1.0a2)
 * ブラウザの紐付けを解除する **detach** コマンドを追加 (v0.1.0a3)
 * Firefoxからセッション情報を取り出す機能を実装 (v0.1.0a4)
 * 動画の情報を表示する **getflv** コマンドを追加 (v0.1.0)
 * コマンドを追加する方法のドキュメントを書く (v1.0.0までには書く)
-
-.. _PYPI: https://pypi.python.org/pypi/
 
 
 Copyright 2015 Masayuki Yamamoto
