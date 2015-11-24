@@ -39,7 +39,7 @@ setup(
         'console_scripts': ['yan = yanico.command.__init__:main'],
     },
     classifiers=[
-        'Development Status :: 1 - Planning',
+        'Development Status :: 2 - Pre-Alpha',
         'Environment :: Console',
         'Intended Audience :: End Users/Desctop',
         'License :: OSI Approved :: Apache Software License',
