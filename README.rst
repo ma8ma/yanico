@@ -1,6 +1,10 @@
 yanico
 ======
 
+.. image:: https://img.shields.io/pypi/v/yanico.svg
+    :target: https://pypi.python.org/pypi/yanico/
+.. image:: https://img.shields.io/pypi/pyversions/yanico.svg
+    :target: https://pypi.python.org/pypi/yanico/
 .. image:: https://travis-ci.org/ma8ma/yanico.svg
     :target: https://travis-ci.org/ma8ma/yanico
 
