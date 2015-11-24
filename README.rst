@@ -49,8 +49,6 @@ Requirement
 
 Install
 -------
-現在は準備中でまだインストールできません。
-
 PYPI_ のリリース版をインストールする::
 
     $ pip install yanico
@@ -82,14 +80,11 @@ Changes
 
 TODO
 ----
-* PYPI_ に登録して公開する (v0.1.0a1)
 * 利用するブラウザを紐付けする **attach** コマンドを追加 (v0.1.0a2)
 * ブラウザの紐付けを解除する **detach** コマンドを追加 (v0.1.0a3)
 * Firefoxからセッション情報を取り出す機能を実装 (v0.1.0a4)
 * 動画の情報を表示する **getflv** コマンドを追加 (v0.1.0)
 * コマンドを追加する方法のドキュメントを書く (v1.0.0までには書く)
-
-.. _PYPI: https://pypi.python.org/pypi/
 
 
 Copyright 2015 Masayuki Yamamoto
