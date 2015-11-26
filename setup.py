@@ -38,6 +38,9 @@ setup(
     },
     test_suite='tests',
     install_requires=[],
+    extras_require={
+        'develop': ['hacking', 'flake8-docstrings', 'pep8-naming'],
+    },
     entry_points={
         'console_scripts': ['yan = yanico.command.__init__:main'],
     },
