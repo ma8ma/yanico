@@ -26,7 +26,7 @@ def create_main_parser():
         prog='yan',
     )
     parser.add_argument('--version', action='version',
-                        version='yanico version '+yanico.__version__)
+                        version='yanico version ' + yanico.__version__)
     parser.set_defaults(run=lambda _: parser.print_help())
     return parser
 
