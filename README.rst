@@ -67,8 +67,13 @@ Usage
     $ yan subcommand arg1 arg2
 
 
-Changes
--------
+What's New
+----------
+
+**v0.1.0a2 (unreleased)**
+
+* ソースパッケージにドキュメントを追加しました。
+
 
 **v0.1.0a1 (2015-11-24)**
 

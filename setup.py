@@ -33,8 +33,14 @@ setup(
     keywords='cli comment niconico video',
     url='https://github.com/ma8ma/yanico',
     packages=find_packages(exclude=['tests']),
+    package_data={
+        '': ['CHANGES.ja.md', 'LICENSE'],
+    },
     test_suite='tests',
     install_requires=[],
+    extras_require={
+        'develop': ['hacking', 'flake8-docstrings', 'pep8-naming'],
+    },
     entry_points={
         'console_scripts': ['yan = yanico.command.__init__:main'],
     },
