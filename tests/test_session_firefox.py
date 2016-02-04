@@ -13,10 +13,31 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
+import os.path
 import sqlite3
+import unittest
+from unittest import mock
+
+from yanico.session import firefox
 
 
 def _stub_db():
     conn = sqlite3.connect(':memory:')
     conn.execute("CREATE TABLE moz_cookies (name, host, value)")
     return conn
+
+
+class TestLoad(unittest.TestCase):
+    """Test for yanico.session.firefox.load()."""
+
+    def test_exist(self):
+        """Expect user_session string."""
+        conn = _stub_db()
+        conn.execute("INSERT INTO moz_cookies VALUES"
+                     "('user_session', '.nicovideo.jp', 'dummy_user_session')")
+        with mock.patch('sqlite3.connect') as mock_connect:
+            mock_connect.return_value = conn
+            ses = firefox.load('/path/to/profile')
+        expect_path = os.path.join('/path/to/profile', 'cookies.sqlite')
+        mock_connect.assert_called_once_with(expect_path)
+        self.assertEqual('dummy_user_session', ses)
