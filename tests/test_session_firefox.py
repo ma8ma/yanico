@@ -12,3 +12,11 @@
 #  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
+
+import sqlite3
+
+
+def _stub_db():
+    conn = sqlite3.connect(':memory:')
+    conn.execute("CREATE TABLE moz_cookies (name, host, value)")
+    return conn
