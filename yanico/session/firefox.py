@@ -12,3 +12,21 @@
 #  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
+
+import os.path
+import sqlite3
+
+
+def load(profile):
+    """Return the nicovideo.jp user_session string.
+
+    Arguments:
+    profile : str -- path for Firefox profile direcotry
+
+    Returns: str
+    """
+    conn = sqlite3.connect(os.path.join(profile, 'cookies.sqlite'))
+    cur = conn.execute(
+        "SELECT value FROM moz_cookies "
+        "WHERE name = 'user_session' AND host = '.nicovideo.jp'")
+    return cur.fetchone()[0]
