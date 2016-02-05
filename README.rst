@@ -97,4 +97,4 @@ TODO
 * コマンドを追加する方法のドキュメントを書く (v1.0.0までには書く)
 
 
-Copyright 2015 Masayuki Yamamoto
+Copyright 2015-2016 Masayuki Yamamoto
