@@ -56,3 +56,7 @@ class TestLoad(unittest.TestCase):
     def test_not_directory(self):
         """If profile is not directory path, raise Error."""
         self.assertRaises(FileNotFoundError, firefox.load, '/NOT-DIRECTORY')
+
+    def test_empty_string(self):
+        """If profile is empty string, raise Error."""
+        self.assertRaises(FileNotFoundError, firefox.load, '')
