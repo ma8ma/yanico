@@ -18,6 +18,8 @@ import sqlite3
 import unittest
 from unittest import mock
 
+import pkg_resources
+
 from yanico.session import firefox
 from yanico.session import UserSessionNotFoundError
 
@@ -60,3 +62,13 @@ class TestLoad(unittest.TestCase):
     def test_empty_string(self):
         """If profile is empty string, raise Error."""
         self.assertRaises(FileNotFoundError, firefox.load, '')
+
+
+class TestEntryPoint(unittest.TestCase):
+    """Test for `yanico.sessions` entry point."""
+
+    def test_load_func(self):
+        """Check whether loaeded function is firefox.load()."""
+        func = pkg_resources.load_entry_point('yanico>=0.1.0a2',
+                                              'yanico.sessions', 'firefox')
+        self.assertIs(firefox.load, func)
