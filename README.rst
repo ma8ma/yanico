@@ -55,11 +55,12 @@ PYPI_ のリリース版をインストールする::
 
     $ pip install yanico
 
-リポジトリの最新版をインストールする::
+`リポジトリ`_ の最新版をインストールする::
 
     $ pip install git+https://github.com/ma8ma/yanico
 
 .. _PYPI: https://pypi.python.org/pypi/yanico/
+.. _`リポジトリ`: https://github.com/ma8ma/yanico
 
 
 Usage
