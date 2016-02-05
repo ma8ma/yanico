@@ -31,6 +31,8 @@ def load(profile):
     FileNotFoundError
     UserSessionNotFoundError
     """
+    if not profile:
+        raise FileNotFoundError('profile must not be empty.')
     cookie_path = os.path.join(profile, 'cookies.sqlite')
     try:
         conn = sqlite3.connect(cookie_path)
