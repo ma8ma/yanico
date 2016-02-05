@@ -28,9 +28,14 @@ def load(profile):
     Returns: str
 
     Raises:
+    FileNotFoundError
     UserSessionNotFoundError
     """
-    conn = sqlite3.connect(os.path.join(profile, 'cookies.sqlite'))
+    cookie_path = os.path.join(profile, 'cookies.sqlite')
+    try:
+        conn = sqlite3.connect(cookie_path)
+    except sqlite3.OperationalError:
+        raise FileNotFoundError('{} is not directory.'.format(profile))
     cur = conn.execute(
         "SELECT value FROM moz_cookies "
         "WHERE name = 'user_session' AND host = '.nicovideo.jp'")
