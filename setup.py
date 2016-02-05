@@ -43,6 +43,9 @@ setup(
     },
     entry_points={
         'console_scripts': ['yan = yanico.command.__init__:main'],
+        'yanico.sessions': [
+            'firefox = yanico.session.firefox:load',
+        ],
     },
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
