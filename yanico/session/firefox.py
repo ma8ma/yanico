@@ -16,6 +16,8 @@
 import os.path
 import sqlite3
 
+from yanico.session import UserSessionNotFoundError
+
 
 def load(profile):
     """Return the nicovideo.jp user_session string.
@@ -24,9 +26,15 @@ def load(profile):
     profile : str -- path for Firefox profile direcotry
 
     Returns: str
+
+    Raises:
+    UserSessionNotFoundError
     """
     conn = sqlite3.connect(os.path.join(profile, 'cookies.sqlite'))
     cur = conn.execute(
         "SELECT value FROM moz_cookies "
         "WHERE name = 'user_session' AND host = '.nicovideo.jp'")
-    return cur.fetchone()[0]
+    row = cur.fetchone()
+    if not row:
+        raise UserSessionNotFoundError('user_session is not found.')
+    return row[0]
