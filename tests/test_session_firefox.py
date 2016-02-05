@@ -19,6 +19,7 @@ import unittest
 from unittest import mock
 
 from yanico.session import firefox
+from yanico.session import UserSessionNotFoundError
 
 
 def _stub_db():
@@ -41,3 +42,13 @@ class TestLoad(unittest.TestCase):
         expect_path = os.path.join('/path/to/profile', 'cookies.sqlite')
         mock_connect.assert_called_once_with(expect_path)
         self.assertEqual('dummy_user_session', ses)
+
+    def test_not_exist(self):
+        """If not exist user_session, raise Error."""
+        conn = _stub_db()
+        with mock.patch('sqlite3.connect') as mock_connect:
+            mock_connect.return_value = conn
+            self.assertRaises(UserSessionNotFoundError,
+                              firefox.load, '/path/to/profile')
+        expect_path = os.path.join('/path/to/profile', 'cookies.sqlite')
+        mock_connect.assert_called_once_with(expect_path)
