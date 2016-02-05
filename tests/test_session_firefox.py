@@ -52,3 +52,7 @@ class TestLoad(unittest.TestCase):
                               firefox.load, '/path/to/profile')
         expect_path = os.path.join('/path/to/profile', 'cookies.sqlite')
         mock_connect.assert_called_once_with(expect_path)
+
+    def test_not_directory(self):
+        """If profile is not directory path, raise Error."""
+        self.assertRaises(FileNotFoundError, firefox.load, '/NOT-DIRECTORY')
