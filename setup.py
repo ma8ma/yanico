@@ -1,5 +1,5 @@
 """Setup script."""
-#  Copyright 2015 Masayuki Yamamoto
+#  Copyright 2015-2016 Masayuki Yamamoto
 #
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -43,6 +43,9 @@ setup(
     },
     entry_points={
         'console_scripts': ['yan = yanico.command.__init__:main'],
+        'yanico.sessions': [
+            'firefox = yanico.session.firefox:load',
+        ],
     },
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
