@@ -15,4 +15,4 @@
 
 
 class UserSessionNotFoundError(Exception):
-    """Firefox profile exists, buf user_session is not found."""
+    """Profile exists, but user_session is not found."""
