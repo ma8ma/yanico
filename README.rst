@@ -84,7 +84,9 @@ What's New
 * コマンド **yan** を追加しました。
   このコマンドはサブコマンドの追加による機能拡張が可能です。
 
-以前のバージョンでの変更は CHANGES.ja.md を見てください。
+以前のバージョンでの変更は `CHANGES.ja.md`_ を見てください。
+
+.. _`CHANGES.ja.md`: https://github.com/ma8ma/yanico/blob/master/CHANGES.ja.md
 
 
 TODO
