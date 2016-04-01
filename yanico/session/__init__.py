@@ -13,6 +13,9 @@
 #  limitations under the License.
 """Handle nicovideo.jp user_session."""
 
+class LoaderNotFoundError(Exception):
+    """Session loader is not found."""
+
 
 class UserSessionNotFoundError(Exception):
     """Profile exists, but user_session is not found."""
