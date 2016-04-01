@@ -17,6 +17,7 @@ import unittest
 from unittest import mock
 
 from yanico import session
+from yanico.session import LoaderNotFoundError
 
 
 class TestLoad(unittest.TestCase):
@@ -36,3 +37,14 @@ class TestLoad(unittest.TestCase):
         iter_eps.assert_called_once_with('yanico.sessions', ltype)
         entry.load.assert_called_once_with()
         loader.assert_called_once_with(profile)
+
+    @mock.patch('pkg_resources.iter_entry_points')
+    def test_loader_not_exist(self, iter_eps):
+        """Expect to raise exception when the loader does not exist."""
+        iter_eps.return_value = []
+
+        ltype = 'loader is not found'
+        profile = 'dummy'
+        self.assertRaises(LoaderNotFoundError, session.load, ltype, profile)
+
+        iter_eps.assert_called_once_with('yanico.sessions', ltype)
