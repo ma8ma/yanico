@@ -13,9 +13,19 @@
 #  limitations under the License.
 """Handle nicovideo.jp user_session."""
 
+import pkg_resources
+
+
 class LoaderNotFoundError(Exception):
     """Session loader is not found."""
 
 
 class UserSessionNotFoundError(Exception):
     """Profile exists, but user_session is not found."""
+
+
+def load(ltype, profile):
+    for entry in pkg_resources.iter_entry_points('yanico.sessions', ltype):
+        load_func = entry.load()
+        return load_func(profile)
+    raise LoaderNotFoundError('{} loader is not found.'.format(ltype))
