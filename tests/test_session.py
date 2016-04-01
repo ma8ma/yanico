@@ -48,3 +48,20 @@ class TestLoad(unittest.TestCase):
         self.assertRaises(LoaderNotFoundError, session.load, ltype, profile)
 
         iter_eps.assert_called_once_with('yanico.sessions', ltype)
+
+    @mock.patch('pkg_resources.iter_entry_points')
+    def test_loader_error(self, iter_eps):
+        """Expect to through error when the loader raises any error."""
+        class _AnyError(Exception):
+            pass
+        entry = mock.Mock()
+        loader = entry.load.return_value = mock.Mock(side_effect=_AnyError)
+        iter_eps.return_value = [entry]
+
+        ltype = 'loader is found'
+        profile = 'a profile'
+        self.assertRaises(_AnyError, session.load, ltype, profile)
+
+        iter_eps.assert_called_once_with('yanico.sessions', ltype)
+        entry.load.assert_called_once_with()
+        loader.assert_called_once_with(profile)
