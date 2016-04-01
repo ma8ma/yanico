@@ -12,3 +12,27 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 """Unittest of handling for user session."""
+
+import unittest
+from unittest import mock
+
+from yanico import session
+
+
+class TestLoad(unittest.TestCase):
+    """Test for yanico.session.load()."""
+
+    @mock.patch('pkg_resources.iter_entry_points')
+    def test_loader_exist(self, iter_eps):
+        """Expect to the load function returns user session."""
+        entry = mock.Mock()
+        loader = entry.load.return_value = mock.Mock(return_value='value')
+        iter_eps.return_value = [entry]
+
+        ltype = 'firefox'
+        profile = '/path/to/profile'
+        self.assertEqual(session.load(ltype, profile), 'value')
+
+        iter_eps.assert_called_once_with('yanico.sessions', ltype)
+        entry.load.assert_called_once_with()
+        loader.assert_called_once_with(profile)
