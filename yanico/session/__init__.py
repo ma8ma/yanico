@@ -25,6 +25,19 @@ class UserSessionNotFoundError(Exception):
 
 
 def load(ltype, profile):
+    """Return nicovideo.jp user session string.
+
+    Args:
+        ltype (str): loader type
+        profile (str): file path for profile
+
+    Returns:
+        str: user session
+
+    Raises:
+        LoaderNotFoundError
+        Error from loader
+    """
     for entry in pkg_resources.iter_entry_points('yanico.sessions', ltype):
         load_func = entry.load()
         return load_func(profile)
