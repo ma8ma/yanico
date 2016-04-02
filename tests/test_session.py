@@ -86,3 +86,8 @@ class TestLoadFromConfig(unittest.TestCase):
         """Expect to raise KeyError if the config without session."""
         without_session = {'type': 'foobar', 'profile': '/path/to/profile'}
         self.assertRaises(KeyError, session.load_from_config, without_session)
+
+    def test_without_type(self):
+        """Expect to raise KeyError if the config without type."""
+        without_type = {'session': {'profile': '/path/to/profile'}}
+        self.assertRaises(KeyError, session.load_from_config, without_type)
