@@ -45,5 +45,18 @@ def load(ltype, profile):
 
 
 def load_from_config(conf):
+    """Return nicovideo.jp user session string.
+
+    Args:
+        conf (ConfigMap): configuration of the user session loading
+                          ConfigMap = Mapping[str, Mapping[str, str]]
+
+    Returns:
+        str: user session
+
+    Raises:
+        KeyError
+        Error from load()
+    """
     session = conf['session']
     return load(session['type'], session['profile'])
