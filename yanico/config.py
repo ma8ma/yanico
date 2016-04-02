@@ -20,4 +20,8 @@ CONFIG_FILENAME = '.yanico.conf'
 
 
 def user_path():
+    """Return user configuration filepath.
+
+    The filepath depends home directory and CONFIG_FILENAME constants.
+    """
     return os.path.join(os.path.expanduser('~'), CONFIG_FILENAME)
