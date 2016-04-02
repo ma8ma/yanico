@@ -13,8 +13,22 @@
 #  limitations under the License.
 """Unittest of configuration loading."""
 
+import os
 import unittest
+from unittest import mock
+
+from yanico import config
 
 
 class TestUserPath(unittest.TestCase):
     """Test for yanico.config.user_path()."""
+
+    @mock.patch.dict(os.environ, {'HOME': 'spam'})
+    def test_path(self):
+        """Expect filepath joinning '.yanico.conf' under $HOME."""
+        if os.sep == '\\':
+            expect = 'spam\\.yanico.conf'
+        elif os.sep == '/':
+            expect = 'spam/.yanico.conf'
+        result = config.user_path()
+        self.assertEqual(result, expect)
