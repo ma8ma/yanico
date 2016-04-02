@@ -32,3 +32,9 @@ class TestUserPath(unittest.TestCase):
             expect = 'spam/.yanico.conf'
         result = config.user_path()
         self.assertEqual(result, expect)
+
+    @mock.patch('yanico.config.CONFIG_FILENAME', new='ham.egg')
+    def test_dependence_constants(self):
+        """Expect to depend filename by 'CONFIG_FILENAME' constants."""
+        result = config.user_path()
+        self.assertEqual(os.path.basename(result), 'ham.egg')
