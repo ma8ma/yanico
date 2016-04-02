@@ -81,3 +81,8 @@ class TestLoadFromConfig(unittest.TestCase):
         self.assertEqual(session.load_from_config(min_config), 'value')
 
         load_func.assert_called_once_with('foobar', '/path/to/profile')
+
+    def test_without_session(self):
+        """Expect to raise KeyError if the config without session."""
+        without_session = {'type': 'foobar', 'profile': '/path/to/profile'}
+        self.assertRaises(KeyError, session.load_from_config, without_session)
