@@ -12,3 +12,9 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 """Unittest of configuration loading."""
+
+import unittest
+
+
+class TestUserPath(unittest.TestCase):
+    """Test for yanico.config.user_path()."""
