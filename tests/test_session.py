@@ -65,3 +65,19 @@ class TestLoad(unittest.TestCase):
         iter_eps.assert_called_once_with('yanico.sessions', ltype)
         entry.load.assert_called_once_with()
         loader.assert_called_once_with(profile)
+
+
+class TestLoadFromConfig(unittest.TestCase):
+    """Test for yanico.session.load_from_config()."""
+
+    @mock.patch('yanico.session.load')
+    def test_min_config(self, load_func):
+        """Expect to return string using minimum configuration."""
+        load_func.return_value = 'value'
+
+        min_config = {
+            'session': {'type': 'foobar', 'profile': '/path/to/profile'}
+        }
+        self.assertEqual(session.load_from_config(min_config), 'value')
+
+        load_func.assert_called_once_with('foobar', '/path/to/profile')
