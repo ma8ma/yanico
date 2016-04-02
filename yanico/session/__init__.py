@@ -42,3 +42,8 @@ def load(ltype, profile):
         load_func = entry.load()
         return load_func(profile)
     raise LoaderNotFoundError('{} loader is not found.'.format(ltype))
+
+
+def load_from_config(conf):
+    session = conf['session']
+    return load(session['type'], session['profile'])
