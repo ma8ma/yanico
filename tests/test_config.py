@@ -38,3 +38,7 @@ class TestUserPath(unittest.TestCase):
         """Expect to depend filename by 'CONFIG_FILENAME' constants."""
         result = config.user_path()
         self.assertEqual(os.path.basename(result), 'ham.egg')
+
+
+class TestLoad(unittest.TestCase):
+    """Test for yanico.config.load()."""
