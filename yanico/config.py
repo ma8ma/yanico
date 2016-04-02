@@ -13,4 +13,11 @@
 #  limitations under the License.
 """Handle yanico configuration."""
 
+import os.path
+
+
 CONFIG_FILENAME = '.yanico.conf'
+
+
+def user_path():
+    return os.path.join(os.path.expanduser('~'), CONFIG_FILENAME)
