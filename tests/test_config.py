@@ -42,3 +42,11 @@ class TestUserPath(unittest.TestCase):
 
 class TestLoad(unittest.TestCase):
     """Test for yanico.config.load()."""
+
+    @mock.patch('configparser.ConfigParser')
+    def test_without_args(self, parserclass):
+        """Expect config object that tried to parse user config file."""
+        mock_conf = parserclass.return_value
+        result = config.load()
+        self.assertIs(result, mock_conf)
+        mock_conf.read.assert_called_once_with((config.user_path(),))
