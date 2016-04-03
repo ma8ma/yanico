@@ -65,7 +65,20 @@ PYPI_ のリリース版をインストールする::
 
 Usage
 -----
-入力例::
+* ホームディレクトリに設定ファイル ``.yanico.conf`` を置きます。
+  ``[session]`` セクションに実行時に使用するセッション情報を読み込む
+  **ブラウザのタイプ** ``type`` と **プロファイルのパス** ``profile``
+  を設定してください。
+
+設定例::
+
+    $ cat <<EOF >~/.yanico.conf
+    [session]
+    type = firefox
+    profile = /home/user/path/to/firefox/profile
+    EOF
+
+コマンド例::
 
     $ yan subcommand arg1 arg2
 
