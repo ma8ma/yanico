@@ -29,6 +29,16 @@ def user_path():
 
 
 def load(*filepaths):
+    """Return configration object.
+
+    Object parses home directory config file.
+
+    Args:
+        filepaths (Tuple[str]): configuration file paths
+
+    Returns:
+        ConfigParser: object expects some configurations are loaded.
+    """
     parser = configparser.ConfigParser()
     parser.read((user_path(),) + filepaths)
     return parser
