@@ -99,11 +99,6 @@ What's New
 * Firefoxのプロファイルからニコニコのセッション情報をロードする機能を追加しました。
 
 
-**v0.1.0a1 (2015-11-24)**
-
-* コマンド **yan** を追加しました。
-  このコマンドはサブコマンドの追加による機能拡張が可能です。
-
 以前のバージョンでの変更は `CHANGES.ja.md`_ を見てください。
 
 .. _`CHANGES.ja.md`: https://github.com/ma8ma/yanico/blob/master/CHANGES.ja.md
