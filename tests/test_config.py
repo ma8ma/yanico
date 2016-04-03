@@ -50,3 +50,12 @@ class TestLoad(unittest.TestCase):
         result = config.load()
         self.assertIs(result, mock_conf)
         mock_conf.read.assert_called_once_with((config.user_path(),))
+
+    @mock.patch('configparser.ConfigParser')
+    def test_with_args(self, parserclass):
+        """Expect arguments pass to the parser after user config file."""
+        mock_conf = parserclass.return_value
+        result = config.load('spam', 'ham', 'eggs')
+        self.assertIs(result, mock_conf)
+        mock_conf.read.assert_called_once_with((config.user_path(),
+                                                'spam', 'ham', 'eggs'))
