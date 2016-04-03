@@ -13,6 +13,7 @@
 #  limitations under the License.
 """Handle yanico configuration."""
 
+import configparser
 import os.path
 
 
@@ -25,3 +26,9 @@ def user_path():
     The filepath depends home directory and CONFIG_FILENAME constants.
     """
     return os.path.join(os.path.expanduser('~'), CONFIG_FILENAME)
+
+
+def load(*filepaths):
+    parser = configparser.ConfigParser()
+    parser.read((user_path(),) + filepaths)
+    return parser
