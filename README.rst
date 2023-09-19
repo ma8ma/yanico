@@ -5,8 +5,8 @@ yanico
     :target: https://pypi.python.org/pypi/yanico/
 .. image:: https://img.shields.io/pypi/pyversions/yanico.svg
     :target: https://pypi.python.org/pypi/yanico/
-.. image:: https://travis-ci.org/ma8ma/yanico.svg
-    :target: https://travis-ci.org/ma8ma/yanico
+.. image:: https://github.com/ma8ma/yanico/workflows/CI/badge.svg
+    :target: https://github.com/ma8ma/yanico
 
 Yet Another Niconico-douga Command-line Interface
 
