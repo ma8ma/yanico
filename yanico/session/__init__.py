@@ -41,7 +41,7 @@ def load(ltype, profile):
     for entry in pkg_resources.iter_entry_points('yanico.sessions', ltype):
         load_func = entry.load()
         return load_func(profile)
-    raise LoaderNotFoundError('{} loader is not found.'.format(ltype))
+    raise LoaderNotFoundError(f'{ltype} loader is not found.')
 
 
 def load_from_config(conf):
