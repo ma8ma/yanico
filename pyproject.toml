@@ -1,0 +1,72 @@
+#  Copyright 2015-2023 Masayuki Yamamoto
+#
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "yanico"
+dynamic = ["version"]
+description = "Yet Another Niconico-douga Command-line Interface"
+readme = "README.rst"
+requires-python = ">=3.8"
+license = {file = "LICENSE"}
+keywords = ["cli", "comment", "niconico", "video"]
+authors = [
+  {name = "Masayuki Yamamoto", email = "15698961+ma8ma@users.noreply.github.com"},
+]
+maintainers = [
+]
+classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
+  "Environment :: Console",
+  "Intended Audience :: End Users/Desktop",
+  "License :: OSI Approved :: Apache Software License",
+  "Operating System :: POSIX",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Internet :: WWW/HTTP",
+  "Topic :: Internet :: WWW/HTTP :: Session",
+]
+
+[project.optional-dependencies]
+develop = ["hacking", "flake8-docstrings", "pep8-naming"]
+dev = ["pytest", "pylint", "mypy", "setuptools", "types-setuptools", "coverage"]
+docs = ["docutils"]
+
+[project.urls]
+Homepage = "https://github.com/ma8ma/yanico"
+Repository = "https://github.com/ma8ma/yanico"
+Changelog = "https://github.com/ma8ma/yanico/blob/master/CHANGES.ja.md"
+
+[project.scripts]
+yan = "yanico.command.__init__:main"
+
+[project.entry-points."yanico.sessions"]
+firefox = "yanico.session.firefox:load"
+
+[tool.setuptools.packages.find]
+exclude = ["tests"]
+
+[tool.setuptools.dynamic]
+version = {attr = "yanico.__version__"}
+
+[tool.flake8]
+ignore = "D203"
