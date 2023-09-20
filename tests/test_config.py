@@ -26,6 +26,7 @@ class TestUserPath(unittest.TestCase):
     @mock.patch.dict(os.environ, {'HOME': 'spam'})
     def test_path(self):
         """Expect filepath joinning '.yanico.conf' under $HOME."""
+        expect = None
         if os.sep == '\\':
             expect = 'spam\\.yanico.conf'
         elif os.sep == '/':

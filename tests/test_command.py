@@ -15,7 +15,7 @@
 
 import argparse
 import unittest
-import unittest.mock as mock
+from unittest import mock
 
 import yanico
 import yanico.command

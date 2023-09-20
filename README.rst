@@ -5,8 +5,8 @@ yanico
     :target: https://pypi.python.org/pypi/yanico/
 .. image:: https://img.shields.io/pypi/pyversions/yanico.svg
     :target: https://pypi.python.org/pypi/yanico/
-.. image:: https://travis-ci.org/ma8ma/yanico.svg
-    :target: https://travis-ci.org/ma8ma/yanico
+.. image:: https://github.com/ma8ma/yanico/workflows/CI/badge.svg
+    :target: https://github.com/ma8ma/yanico
 
 Yet Another Niconico-douga Command-line Interface
 
@@ -39,9 +39,9 @@ Feature
 
 Requirement
 -----------
-* Python_ (バージョン3以降)
-* pip_
-* setuptools_
+* Python_ (バージョン3.8以降)
+* pip_ (バージョン10以降)
+* setuptools_ (バージョン 61.0.0 以降)
 * サードパーティ製のHTTPライブラリ(予定)
 
 .. _Python: https://www.python.org/
@@ -61,6 +61,19 @@ PYPI_ のリリース版をインストールする::
 
 .. _PYPI: https://pypi.python.org/pypi/yanico/
 .. _`リポジトリ`: https://github.com/ma8ma/yanico
+
+
+Testing
+-------
+テストを行うには追加のライブラリをインストールする::
+
+    $ pip install yanico[dev]
+    $ pytest
+
+コードカバレッジを計測して結果を表示する::
+
+    $ coverage run -m pytest
+    $ coverage report
 
 
 Usage
@@ -86,17 +99,16 @@ Usage
 What's New
 ----------
 
+**v0.1.0a4 (unreleased)**
+
+* パッケージのビルドに必要なデータは pyproject.toml で定義するように変更しました。(PEP 518)
+
+
 **v0.1.0a3 (2016-04-05)**
 
 * ローダータイプとプロファイルからセッション情報を読み込む機能を追加しました。
 * 設定解析オブジェクトからセッション情報を読み込む機能を追加しました。
 * ユーザーが用意した設定ファイルを読み込む機能を追加しました。
-
-
-**v0.1.0a2 (2016-02-06)**
-
-* ソースパッケージにドキュメントを追加しました。
-* Firefoxのプロファイルからニコニコのセッション情報をロードする機能を追加しました。
 
 
 以前のバージョンでの変更は `CHANGES.ja.md`_ を見てください。
@@ -110,4 +122,4 @@ TODO
 * コマンドを追加する方法のドキュメントを書く (v1.0.0までには書く)
 
 
-Copyright 2015-2016 Masayuki Yamamoto
+Copyright 2015-2023 Masayuki Yamamoto

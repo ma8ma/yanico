@@ -36,8 +36,8 @@ def load(profile):
     cookie_path = os.path.join(profile, 'cookies.sqlite')
     try:
         conn = sqlite3.connect(cookie_path)
-    except sqlite3.OperationalError:
-        raise FileNotFoundError('{} is not directory.'.format(profile))
+    except sqlite3.OperationalError as exc:
+        raise FileNotFoundError(f'{profile} is not directory.') from exc
     cur = conn.execute(
         "SELECT value FROM moz_cookies "
         "WHERE name = 'user_session' AND host = '.nicovideo.jp'")
