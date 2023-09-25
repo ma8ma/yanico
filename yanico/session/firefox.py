@@ -32,16 +32,17 @@ def load(profile):
     UserSessionNotFoundError
     """
     if not profile:
-        raise FileNotFoundError('profile must not be empty.')
-    cookie_path = os.path.join(profile, 'cookies.sqlite')
+        raise FileNotFoundError("profile must not be empty.")
+    cookie_path = os.path.join(profile, "cookies.sqlite")
     try:
         conn = sqlite3.connect(cookie_path)
     except sqlite3.OperationalError as exc:
-        raise FileNotFoundError(f'{profile} is not directory.') from exc
+        raise FileNotFoundError(f"{profile} is not directory.") from exc
     cur = conn.execute(
         "SELECT value FROM moz_cookies "
-        "WHERE name = 'user_session' AND host = '.nicovideo.jp'")
+        "WHERE name = 'user_session' AND host = '.nicovideo.jp'"
+    )
     row = cur.fetchone()
     if not row:
-        raise UserSessionNotFoundError('user_session is not found.')
+        raise UserSessionNotFoundError("user_session is not found.")
     return row[0]

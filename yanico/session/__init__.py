@@ -38,10 +38,10 @@ def load(ltype, profile):
         LoaderNotFoundError
         Error from loader
     """
-    for entry in pkg_resources.iter_entry_points('yanico.sessions', ltype):
+    for entry in pkg_resources.iter_entry_points("yanico.sessions", ltype):
         load_func = entry.load()
         return load_func(profile)
-    raise LoaderNotFoundError(f'{ltype} loader is not found.')
+    raise LoaderNotFoundError(f"{ltype} loader is not found.")
 
 
 def load_from_config(conf):
@@ -58,5 +58,5 @@ def load_from_config(conf):
         KeyError
         Error from load()
     """
-    session = conf['session']
-    return load(session['type'], session['profile'])
+    session = conf["session"]
+    return load(session["type"], session["profile"])

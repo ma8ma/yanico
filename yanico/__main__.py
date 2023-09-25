@@ -17,5 +17,5 @@ import sys
 
 import yanico.command
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     sys.exit(yanico.command.main())
