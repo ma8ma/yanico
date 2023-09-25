@@ -23,10 +23,11 @@ def create_main_parser():
     """Return command argument parser."""
     parser = argparse.ArgumentParser(
         description=yanico.__description__,
-        prog='yan',
+        prog="yan",
     )
-    parser.add_argument('--version', action='version',
-                        version='yanico version ' + yanico.__version__)
+    parser.add_argument(
+        "--version", action="version", version="yanico version " + yanico.__version__
+    )
     parser.set_defaults(run=lambda _: parser.print_help())
     return parser
 
@@ -34,8 +35,8 @@ def create_main_parser():
 def build_subparsers(parser):
     """Register command from setuptools plugins."""
     # pylint: disable=no-member
-    subparsers = parser.add_subparsers(title='Commands')
-    for entry in pkg_resources.iter_entry_points('yanico.commands'):
+    subparsers = parser.add_subparsers(title="Commands")
+    for entry in pkg_resources.iter_entry_points("yanico.commands"):
         register = entry.load()
         register(entry.name, subparsers)
 

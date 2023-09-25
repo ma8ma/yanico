@@ -48,8 +48,16 @@ classifiers = [
 
 [project.optional-dependencies]
 develop = ["hacking", "flake8-docstrings", "pep8-naming"]
-dev = ["pytest", "pylint", "mypy", "setuptools", "types-setuptools", "coverage"]
-docs = ["docutils"]
+dev = [
+  "black>=23.7.0",
+  "coverage",
+  "docutils",
+  "mypy>=0.560",
+  "pylint>=2.6.0",
+  "pytest",
+  "setuptools>=61.0",
+  "types-setuptools",
+]
 
 [project.urls]
 Homepage = "https://github.com/ma8ma/yanico"
@@ -68,5 +76,12 @@ exclude = ["tests"]
 [tool.setuptools.dynamic]
 version = {attr = "yanico.__version__"}
 
-[tool.flake8]
-ignore = "D203"
+[tool.black]
+line-length = 88
+target-version = ["py38", "py39", "py310", "py311", "py312"]
+
+[tool.mypy]
+python_version = "3.8"
+
+[tool.pylint.format]
+max-line-length = "88"

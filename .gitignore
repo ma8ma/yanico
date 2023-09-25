@@ -24,6 +24,8 @@ var/
 *.egg
 .env/
 .mypy_cache/
+venv/
+.venv/
 
 # PyInstaller
 #  Usually these files are written by a python script from a template

@@ -13,8 +13,8 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-__author__ = 'Masayuki Yamamoto'
-__copyright__ = 'Copyright 2015-2016 Yamamoto Masayuki'
+__author__ = "Masayuki Yamamoto"
+__copyright__ = "Copyright 2015-2016 Yamamoto Masayuki"
 __description__ = __doc__
-__license__ = 'Apache 2.0'
-__version__ = '0.1.0a4'
+__license__ = "Apache 2.0"
+__version__ = "0.1.0a4"

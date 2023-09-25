@@ -17,7 +17,7 @@ import configparser
 import os.path
 
 
-CONFIG_FILENAME = '.yanico.conf'
+CONFIG_FILENAME = ".yanico.conf"
 
 
 def user_path():
@@ -25,7 +25,7 @@ def user_path():
 
     The filepath depends home directory and CONFIG_FILENAME constants.
     """
-    return os.path.join(os.path.expanduser('~'), CONFIG_FILENAME)
+    return os.path.join(os.path.expanduser("~"), CONFIG_FILENAME)
 
 
 def load(*filepaths):

@@ -23,28 +23,28 @@ from yanico import config
 class TestUserPath(unittest.TestCase):
     """Test for yanico.config.user_path()."""
 
-    @mock.patch.dict(os.environ, {'HOME': 'spam'})
+    @mock.patch.dict(os.environ, {"HOME": "spam"})
     def test_path(self):
         """Expect filepath joinning '.yanico.conf' under $HOME."""
         expect = None
-        if os.sep == '\\':
-            expect = 'spam\\.yanico.conf'
-        elif os.sep == '/':
-            expect = 'spam/.yanico.conf'
+        if os.sep == "\\":
+            expect = "spam\\.yanico.conf"
+        elif os.sep == "/":
+            expect = "spam/.yanico.conf"
         result = config.user_path()
         self.assertEqual(result, expect)
 
-    @mock.patch('yanico.config.CONFIG_FILENAME', new='ham.egg')
+    @mock.patch("yanico.config.CONFIG_FILENAME", new="ham.egg")
     def test_dependence_constants(self):
         """Expect to depend filename by 'CONFIG_FILENAME' constants."""
         result = config.user_path()
-        self.assertEqual(os.path.basename(result), 'ham.egg')
+        self.assertEqual(os.path.basename(result), "ham.egg")
 
 
 class TestLoad(unittest.TestCase):
     """Test for yanico.config.load()."""
 
-    @mock.patch('configparser.ConfigParser')
+    @mock.patch("configparser.ConfigParser")
     def test_without_args(self, parserclass):
         """Expect config object that tried to parse user config file."""
         mock_conf = parserclass.return_value
@@ -52,11 +52,12 @@ class TestLoad(unittest.TestCase):
         self.assertIs(result, mock_conf)
         mock_conf.read.assert_called_once_with((config.user_path(),))
 
-    @mock.patch('configparser.ConfigParser')
+    @mock.patch("configparser.ConfigParser")
     def test_with_args(self, parserclass):
         """Expect arguments pass to the parser after user config file."""
         mock_conf = parserclass.return_value
-        result = config.load('spam', 'ham', 'eggs')
+        result = config.load("spam", "ham", "eggs")
         self.assertIs(result, mock_conf)
-        mock_conf.read.assert_called_once_with((config.user_path(),
-                                                'spam', 'ham', 'eggs'))
+        mock_conf.read.assert_called_once_with(
+            (config.user_path(), "spam", "ham", "eggs")
+        )
