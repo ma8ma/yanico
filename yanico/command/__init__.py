@@ -36,7 +36,9 @@ def build_subparsers(parser):
     """Register command from setuptools plugins."""
     # pylint: disable=no-member
     subparsers = parser.add_subparsers(title="Commands")
-    for entry in importlib.metadata.entry_points(group="yanico.commands"):
+    eps = importlib.metadata.entry_points()
+    select_entries = [e for e in eps if e.group == "yanico.commands"]
+    for entry in select_entries:
         register = entry.load()
         register(entry.name, subparsers)
 

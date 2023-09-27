@@ -75,6 +75,7 @@ class TestBuildSubparsers(unittest.TestCase):
             parser.set_defaults(run=run)
 
         entry_point = mock.Mock()
+        entry_point.group = "yanico.commands"
         entry_point.name = "stub"
         entry_point.load.return_value = register
         return entry_point
@@ -88,7 +89,7 @@ class TestBuildSubparsers(unittest.TestCase):
         yanico.command.build_subparsers(parser)
         args = parser.parse_args(["stub", "21"])
         self.assertEqual(args.run(args), 42)
-        entry_points.assert_called_once_with(group="yanico.commands")
+        entry_points.assert_called_once_with()
 
     @mock.patch("importlib.metadata.entry_points")
     def test_without_arguments(self, entry_points):
@@ -101,7 +102,7 @@ class TestBuildSubparsers(unittest.TestCase):
         with mock.patch.object(parser, "print_help") as print_help:
             args.run(args)
         print_help.assert_called_once_with()
-        entry_points.assert_called_once_with(group="yanico.commands")
+        entry_points.assert_called_once_with()
 
 
 class TestMain(unittest.TestCase):
