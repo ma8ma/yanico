@@ -17,8 +17,7 @@ import os.path
 import sqlite3
 import unittest
 from unittest import mock
-
-import pkg_resources
+import importlib.metadata
 
 from yanico.session import firefox
 from yanico.session import UserSessionNotFoundError
@@ -72,7 +71,8 @@ class TestEntryPoint(unittest.TestCase):
 
     def test_load_func(self):
         """Check whether loaeded function is firefox.load()."""
-        func = pkg_resources.load_entry_point(
-            "yanico>=0.1.0a2", "yanico.sessions", "firefox"
+        (entry,) = importlib.metadata.entry_points(
+            group="yanico.sessions", name="firefox"
         )
+        func = entry.load()
         self.assertIs(firefox.load, func)

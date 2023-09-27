@@ -23,34 +23,35 @@ from yanico.session import LoaderNotFoundError
 class TestLoad(unittest.TestCase):
     """Test for yanico.session.load()."""
 
-    @mock.patch("pkg_resources.iter_entry_points")
-    def test_loader_exist(self, iter_eps):
+    @mock.patch("importlib.metadata.entry_points")
+    def test_loader_exist(self, entry_points):
         """Expect to the load function returns user session."""
         entry = mock.Mock()
         loader = entry.load.return_value = mock.Mock(return_value="value")
-        iter_eps.return_value = [entry]
+        entry_points.return_value = [entry]
 
         ltype = "firefox"
         profile = "/path/to/profile"
         self.assertEqual(session.load(ltype, profile), "value")
 
-        iter_eps.assert_called_once_with("yanico.sessions", ltype)
+        entry_points.assert_called_once_with(group="yanico.sessions", name=ltype)
         entry.load.assert_called_once_with()
         loader.assert_called_once_with(profile)
 
-    @mock.patch("pkg_resources.iter_entry_points")
-    def test_loader_not_exist(self, iter_eps):
+    @mock.patch("importlib.metadata.entry_points")
+    def test_loader_not_exist(self, entry_points):
         """Expect to raise exception when the loader does not exist."""
-        iter_eps.return_value = []
+        eps = entry_points.return_value
+        eps.return_value = []
 
         ltype = "loader is not found"
         profile = "dummy"
         self.assertRaises(LoaderNotFoundError, session.load, ltype, profile)
 
-        iter_eps.assert_called_once_with("yanico.sessions", ltype)
+        entry_points.assert_called_once_with(group="yanico.sessions", name=ltype)
 
-    @mock.patch("pkg_resources.iter_entry_points")
-    def test_loader_error(self, iter_eps):
+    @mock.patch("importlib.metadata.entry_points")
+    def test_loader_error(self, entry_points):
         """Expect to through error when the loader raises any error."""
 
         class _AnyError(Exception):
@@ -58,13 +59,13 @@ class TestLoad(unittest.TestCase):
 
         entry = mock.Mock()
         loader = entry.load.return_value = mock.Mock(side_effect=_AnyError)
-        iter_eps.return_value = [entry]
+        entry_points.return_value = [entry]
 
         ltype = "loader is found"
         profile = "a profile"
         self.assertRaises(_AnyError, session.load, ltype, profile)
 
-        iter_eps.assert_called_once_with("yanico.sessions", ltype)
+        entry_points.assert_called_once_with(group="yanico.sessions", name=ltype)
         entry.load.assert_called_once_with()
         loader.assert_called_once_with(profile)
 
