@@ -15,12 +15,17 @@
 
 import os.path
 import sqlite3
+import sys
 import unittest
 from unittest import mock
-import importlib.metadata
 
 from yanico.session import firefox
 from yanico.session import UserSessionNotFoundError
+
+if sys.version_info < (3, 10):
+    from pkg_resources import load_entry_point
+else:
+    from importlib.metadata import entry_points
 
 
 def _stub_db():
@@ -69,9 +74,20 @@ class TestLoad(unittest.TestCase):
 class TestEntryPoint(unittest.TestCase):
     """Test for `yanico.sessions` entry point."""
 
-    def test_load_func(self):
+    @unittest.skipIf(
+        sys.version_info >= (3, 10), "python3.10 can use EntryPoints.select API."
+    )
+    def test_load_func_py39(self):
         """Check whether loaeded function is firefox.load()."""
-        eps = importlib.metadata.entry_points()
-        (entry,) = [e for e in eps["yanico.sessions"] if e.name == "firefox"]
+        func = load_entry_point("yanico>=0.1.0a2", "yanico.sessions", "firefox")
+        self.assertIs(firefox.load, func)
+
+    @unittest.skipIf(
+        sys.version_info < (3, 10),
+        "python3.9 cannot get entries via importlib.metadata.",
+    )
+    def test_load_func_py310(self):
+        """Check whether loaeded function is firefox.load()."""
+        (entry,) = entry_points(group="yanico.sessions", name="firefox")
         func = entry.load()
         self.assertIs(firefox.load, func)
