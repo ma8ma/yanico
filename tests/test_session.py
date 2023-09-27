@@ -27,14 +27,16 @@ class TestLoad(unittest.TestCase):
     def test_loader_exist(self, entry_points):
         """Expect to the load function returns user session."""
         entry = mock.Mock()
+        entry.group = "yanico.sessions"
+        entry.name = "firefox"
         loader = entry.load.return_value = mock.Mock(return_value="value")
         entry_points.return_value = [entry]
 
-        ltype = "firefox"
+        ltype = entry.name
         profile = "/path/to/profile"
         self.assertEqual(session.load(ltype, profile), "value")
 
-        entry_points.assert_called_once_with(group="yanico.sessions", name=ltype)
+        entry_points.assert_called_once_with()
         entry.load.assert_called_once_with()
         loader.assert_called_once_with(profile)
 
@@ -48,7 +50,7 @@ class TestLoad(unittest.TestCase):
         profile = "dummy"
         self.assertRaises(LoaderNotFoundError, session.load, ltype, profile)
 
-        entry_points.assert_called_once_with(group="yanico.sessions", name=ltype)
+        entry_points.assert_called_once_with()
 
     @mock.patch("importlib.metadata.entry_points")
     def test_loader_error(self, entry_points):
@@ -58,14 +60,16 @@ class TestLoad(unittest.TestCase):
             pass
 
         entry = mock.Mock()
+        entry.group = "yanico.sessions"
+        entry.name = "loader is found"
         loader = entry.load.return_value = mock.Mock(side_effect=_AnyError)
         entry_points.return_value = [entry]
 
-        ltype = "loader is found"
+        ltype = entry.name
         profile = "a profile"
         self.assertRaises(_AnyError, session.load, ltype, profile)
 
-        entry_points.assert_called_once_with(group="yanico.sessions", name=ltype)
+        entry_points.assert_called_once_with()
         entry.load.assert_called_once_with()
         loader.assert_called_once_with(profile)
 

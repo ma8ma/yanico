@@ -38,7 +38,11 @@ def load(ltype, profile):
         LoaderNotFoundError
         Error from loader
     """
-    for entry in importlib.metadata.entry_points(group="yanico.sessions", name=ltype):
+    eps = importlib.metadata.entry_points()
+    select_entries = [
+        e for e in eps if e.group == "yanico.sessions" and e.name == ltype
+    ]
+    for entry in select_entries:
         load_func = entry.load()
         return load_func(profile)
     raise LoaderNotFoundError(f"{ltype} loader is not found.")
