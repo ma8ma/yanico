@@ -71,8 +71,7 @@ class TestEntryPoint(unittest.TestCase):
 
     def test_load_func(self):
         """Check whether loaeded function is firefox.load()."""
-        (entry,) = importlib.metadata.entry_points(
-            group="yanico.sessions", name="firefox"
-        )
+        eps = importlib.metadata.entry_points()
+        (entry,) = [e for e in eps["yanico.sessions"] if e.name == "firefox"]
         func = entry.load()
         self.assertIs(firefox.load, func)
