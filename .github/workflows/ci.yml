@@ -54,7 +54,8 @@ jobs:
           cache: 'pip' # caching pip dependencies
       - name: python package installation
         run: |
-          pip install -e.[dev]
+          # Cannot find implementation or library stub for module named "importlib_metadata" (python_version < "3.10")
+          pip install -e.[dev] importlib-metadata
       - name: mypy yanico/ --install-types
         run: |
           mypy yanico/ --install-types
