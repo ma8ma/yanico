@@ -23,24 +23,22 @@ from yanico.session import LoaderNotFoundError
 class TestLoad(unittest.TestCase):
     """Test for yanico.session.load()."""
 
-    @mock.patch("importlib.metadata.entry_points")
+    @mock.patch("yanico.session.entry_points")
     def test_loader_exist(self, entry_points):
         """Expect to the load function returns user session."""
         entry = mock.Mock()
-        entry.group = "yanico.sessions"
-        entry.name = "firefox"
         loader = entry.load.return_value = mock.Mock(return_value="value")
         entry_points.return_value = [entry]
 
-        ltype = entry.name
+        ltype = "firefox"
         profile = "/path/to/profile"
         self.assertEqual(session.load(ltype, profile), "value")
 
-        entry_points.assert_called_once_with()
+        entry_points.assert_called_once_with(group="yanico.sessions", name=ltype)
         entry.load.assert_called_once_with()
         loader.assert_called_once_with(profile)
 
-    @mock.patch("importlib.metadata.entry_points")
+    @mock.patch("yanico.session.entry_points")
     def test_loader_not_exist(self, entry_points):
         """Expect to raise exception when the loader does not exist."""
         eps = entry_points.return_value
@@ -50,9 +48,9 @@ class TestLoad(unittest.TestCase):
         profile = "dummy"
         self.assertRaises(LoaderNotFoundError, session.load, ltype, profile)
 
-        entry_points.assert_called_once_with()
+        entry_points.assert_called_once_with(group="yanico.sessions", name=ltype)
 
-    @mock.patch("importlib.metadata.entry_points")
+    @mock.patch("yanico.session.entry_points")
     def test_loader_error(self, entry_points):
         """Expect to through error when the loader raises any error."""
 
@@ -60,16 +58,14 @@ class TestLoad(unittest.TestCase):
             pass
 
         entry = mock.Mock()
-        entry.group = "yanico.sessions"
-        entry.name = "loader is found"
         loader = entry.load.return_value = mock.Mock(side_effect=_AnyError)
         entry_points.return_value = [entry]
 
-        ltype = entry.name
+        ltype = "loader is found"
         profile = "a profile"
         self.assertRaises(_AnyError, session.load, ltype, profile)
 
-        entry_points.assert_called_once_with()
+        entry_points.assert_called_once_with(group="yanico.sessions", name=ltype)
         entry.load.assert_called_once_with()
         loader.assert_called_once_with(profile)
 

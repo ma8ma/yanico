@@ -13,7 +13,12 @@
 #  limitations under the License.
 """Handle nicovideo.jp user_session."""
 
-import importlib.metadata
+import sys
+
+if sys.version_info < (3, 10):
+    from importlib_metadata import entry_points
+else:
+    from importlib.metadata import entry_points
 
 
 class LoaderNotFoundError(Exception):
@@ -38,11 +43,8 @@ def load(ltype, profile):
         LoaderNotFoundError
         Error from loader
     """
-    eps = importlib.metadata.entry_points()
-    select_entries = [
-        e for e in eps if e.group == "yanico.sessions" and e.name == ltype
-    ]
-    for entry in select_entries:
+    eps = entry_points(group="yanico.sessions", name=ltype)
+    for entry in eps:
         load_func = entry.load()
         return load_func(profile)
     raise LoaderNotFoundError(f"{ltype} loader is not found.")

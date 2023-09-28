@@ -75,12 +75,11 @@ class TestBuildSubparsers(unittest.TestCase):
             parser.set_defaults(run=run)
 
         entry_point = mock.Mock()
-        entry_point.group = "yanico.commands"
         entry_point.name = "stub"
         entry_point.load.return_value = register
         return entry_point
 
-    @mock.patch("importlib.metadata.entry_points")
+    @mock.patch("yanico.command.entry_points")
     def test_stub_command(self, entry_points):
         """Register command returning two times numbers."""
         entry_points.return_value = [self._init_stub_command()]
@@ -89,9 +88,9 @@ class TestBuildSubparsers(unittest.TestCase):
         yanico.command.build_subparsers(parser)
         args = parser.parse_args(["stub", "21"])
         self.assertEqual(args.run(args), 42)
-        entry_points.assert_called_once_with()
+        entry_points.assert_called_once_with(group="yanico.commands")
 
-    @mock.patch("importlib.metadata.entry_points")
+    @mock.patch("yanico.command.entry_points")
     def test_without_arguments(self, entry_points):
         """Expect 'run' method that showing help."""
         entry_points.return_value = [self._init_stub_command()]
@@ -102,7 +101,7 @@ class TestBuildSubparsers(unittest.TestCase):
         with mock.patch.object(parser, "print_help") as print_help:
             args.run(args)
         print_help.assert_called_once_with()
-        entry_points.assert_called_once_with()
+        entry_points.assert_called_once_with(group="yanico.commands")
 
 
 class TestMain(unittest.TestCase):

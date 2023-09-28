@@ -45,6 +45,9 @@ classifiers = [
   "Topic :: Internet :: WWW/HTTP",
   "Topic :: Internet :: WWW/HTTP :: Session",
 ]
+dependencies = [
+  'importlib-metadata>=4.6.0; python_version<"3.10"',
+]
 
 [project.optional-dependencies]
 develop = ["hacking", "flake8-docstrings", "pep8-naming"]

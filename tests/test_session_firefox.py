@@ -23,7 +23,7 @@ from yanico.session import firefox
 from yanico.session import UserSessionNotFoundError
 
 if sys.version_info < (3, 10):
-    from pkg_resources import load_entry_point
+    from importlib_metadata import entry_points
 else:
     from importlib.metadata import entry_points
 
@@ -74,19 +74,7 @@ class TestLoad(unittest.TestCase):
 class TestEntryPoint(unittest.TestCase):
     """Test for `yanico.sessions` entry point."""
 
-    @unittest.skipIf(
-        sys.version_info >= (3, 10), "python3.10 can use EntryPoints.select API."
-    )
-    def test_load_func_py39(self):
-        """Check whether loaeded function is firefox.load()."""
-        func = load_entry_point("yanico>=0.1.0a2", "yanico.sessions", "firefox")
-        self.assertIs(firefox.load, func)
-
-    @unittest.skipIf(
-        sys.version_info < (3, 10),
-        "python3.9 cannot get entries via importlib.metadata.",
-    )
-    def test_load_func_py310(self):
+    def test_load_func(self):
         """Check whether loaeded function is firefox.load()."""
         (entry,) = entry_points(group="yanico.sessions", name="firefox")
         func = entry.load()
