@@ -13,7 +13,12 @@
 #  limitations under the License.
 """Handle nicovideo.jp user_session."""
 
-import pkg_resources
+import sys
+
+if sys.version_info < (3, 10):
+    from importlib_metadata import entry_points
+else:
+    from importlib.metadata import entry_points
 
 
 class LoaderNotFoundError(Exception):
@@ -38,7 +43,8 @@ def load(ltype, profile):
         LoaderNotFoundError
         Error from loader
     """
-    for entry in pkg_resources.iter_entry_points("yanico.sessions", ltype):
+    eps = entry_points(group="yanico.sessions", name=ltype)
+    for entry in eps:
         load_func = entry.load()
         return load_func(profile)
     raise LoaderNotFoundError(f"{ltype} loader is not found.")
