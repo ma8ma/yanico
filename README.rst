@@ -61,21 +61,8 @@ PYPI_ のリリース版をインストールする::
 
     $ pip install git+https://github.com/ma8ma/yanico
 
-.. _PYPI: https://pypi.python.org/pypi/yanico/
+.. _PYPI: https://pypi.org/project/yanico/
 .. _`リポジトリ`: https://github.com/ma8ma/yanico
-
-
-Testing
--------
-テストを行うには追加のライブラリをインストールする::
-
-    $ pip install yanico[dev]
-    $ pytest
-
-コードカバレッジを計測して結果を表示する::
-
-    $ coverage run -m pytest
-    $ coverage report
 
 
 Usage
@@ -96,6 +83,46 @@ Usage
 コマンド例::
 
     $ yan subcommand arg1 arg2
+
+
+Development
+-----------
+開発に使う追加のツールをインストールする::
+
+    $ pip install yanico[dev]
+
+
+Testing
+-------
+テストを行うには pytest_ を実行する::
+
+    $ pytest
+
+コードカバレッジ( coverage_ )を計測して結果を表示する::
+
+    $ coverage run -m pytest
+    $ coverage report
+
+
+Code check
+----------
+コードをチェックするには pylint_ を実行する::
+
+    $ pylint setup.py tests/ yanico/
+
+
+Type check
+----------
+型をチェックするには mypy_ を実行する::
+
+    $ mypy yanico/
+
+
+Code formatting
+---------------
+ソースコードを整形するには black_ を実行する::
+
+    $ black .
 
 
 What's New
@@ -120,8 +147,16 @@ What's New
 
 TODO
 ----
-* 動画の情報を表示する **getflv** コマンドを追加 (v0.1.0)
 * コマンドを追加する方法のドキュメントを書く (v1.0.0までには書く)
 
 
 Copyright 2015-2023 Masayuki Yamamoto
+
+
+.. References
+
+.. _coverage: https://coverage.readthedocs.io/
+.. _pytest: https://docs.pytest.org/
+.. _pylint: https://pypi.org/project/pylint/
+.. _mypy: http://mypy-lang.org/
+.. _black: https://github.com/psf/black
