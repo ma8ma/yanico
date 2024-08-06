@@ -1,4 +1,5 @@
 """Yet Another Niconico-douga Command-line Interface."""
+
 #  Copyright 2015-2024 Masayuki Yamamoto
 #
 #  Licensed under the Apache License, Version 2.0 (the "License");
