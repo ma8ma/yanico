@@ -42,11 +42,13 @@ Requirement
 * Python_ (バージョン3.8以降)
 * pip_ (バージョン10以降)
 * setuptools_ (バージョン 61.0.0 以降)
+* setuptools_scm_
 * サードパーティ製のHTTPライブラリ(予定)
 
 .. _Python: https://www.python.org/
 .. _pip: https://pip.pypa.io/
-.. _setuptools: http://pythonhosted.org/setuptools/
+.. _setuptools: https://setuptools.pypa.io/
+.. _setuptools_scm: https://pypi.org/project/setuptools-scm/
 
 
 Install
