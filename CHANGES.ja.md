@@ -1,3 +1,10 @@
+**v0.1.0 (2024-08-06)**
+
+* README.rst に開発ツールのインストールと使い方の説明を追加しました。
+* 廃止予定の `pkg_resources` のかわりに `importlib.metadata` を使うように修正しました。
+* The Uncompromising Code Formatter black を使ってソースコードを整形しました。
+
+
 **v0.1.0a4 (2023-09-20)**
 
 * パッケージのビルドに必要なデータは pyproject.toml で定義するように変更しました。(PEP 518)
