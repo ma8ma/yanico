@@ -1,4 +1,5 @@
 """Unittest of command entry point."""
+
 #  Copyright 2015 Masayuki Yamamoto
 #
 #  Licensed under the Apache License, Version 2.0 (the "License");

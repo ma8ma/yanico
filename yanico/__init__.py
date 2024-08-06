@@ -1,5 +1,6 @@
 """Yet Another Niconico-douga Command-line Interface."""
-#  Copyright 2015-2023 Masayuki Yamamoto
+
+#  Copyright 2015-2024 Masayuki Yamamoto
 #
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -13,8 +14,14 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
+from importlib.metadata import PackageNotFoundError, version
+
 __author__ = "Masayuki Yamamoto"
-__copyright__ = "Copyright 2015-2016 Yamamoto Masayuki"
+__copyright__ = "Copyright 2015-2024 Yamamoto Masayuki"
 __description__ = __doc__
 __license__ = "Apache 2.0"
-__version__ = "0.1.0a4"
+
+try:
+    __version__ = version(__name__)
+except PackageNotFoundError:
+    __version__ = "unknown"
