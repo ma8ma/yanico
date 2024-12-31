@@ -39,7 +39,7 @@ Feature
 
 Requirement
 -----------
-* Python_ (バージョン3.8以降)
+* Python_ (バージョン3.9以降)
 * pip_ (バージョン10以降)
 * setuptools_ (バージョン 61.0.0 以降)
 * setuptools_scm_
@@ -150,7 +150,7 @@ TODO
 * コマンドを追加する方法のドキュメントを書く (v1.0.0までには書く)
 
 
-Copyright 2015-2023 Masayuki Yamamoto
+Copyright 2015-2024 Masayuki Yamamoto
 
 
 .. References
