@@ -128,16 +128,17 @@ Code formatting
 What's New
 ----------
 
+**v0.2.0 (2024-12-31)**
+
+* Python 3.8のサポートを終了しました。
+* `user_session` を直接指定するセッションタイプ `__token__` を追加しました。
+
+
 **v0.1.0 (2024-08-06)**
 
 * README.rst に開発ツールのインストールと使い方の説明を追加しました。
 * 廃止予定の `pkg_resources` のかわりに `importlib.metadata` を使うように修正しました。
 * The Uncompromising Code Formatter black を使ってソースコードを整形しました。
-
-
-**v0.1.0a4 (2023-09-20)**
-
-* パッケージのビルドに必要なデータは pyproject.toml で定義するように変更しました。(PEP 518)
 
 
 以前のバージョンでの変更は `CHANGES.ja.md`_ を見てください。

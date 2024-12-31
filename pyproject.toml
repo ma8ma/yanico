@@ -71,6 +71,7 @@ Changelog = "https://github.com/ma8ma/yanico/blob/master/CHANGES.ja.md"
 yan = "yanico.command.__init__:main"
 
 [project.entry-points."yanico.sessions"]
+__token__ = "yanico.session.token:load"
 firefox = "yanico.session.firefox:load"
 
 [tool.setuptools.packages.find]
