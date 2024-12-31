@@ -54,7 +54,7 @@ develop = ["hacking", "flake8-docstrings", "pep8-naming"]
 dev = [
   "black>=23.7.0",
   "coverage",
-  "docutils>=0.20,<0.21",
+  "docutils>=0.21",
   "mypy>=0.560",
   "pylint>=2.6.0",
   "pytest",
