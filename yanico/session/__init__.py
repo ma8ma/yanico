@@ -1,4 +1,4 @@
-#  Copyright 2015-2016 Masayuki Yamamoto
+#  Copyright (C) 2015-2025 Masayuki Yamamoto
 #
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -13,12 +13,7 @@
 #  limitations under the License.
 """Handle nicovideo.jp user_session."""
 
-import sys
-
-if sys.version_info < (3, 10):
-    from importlib_metadata import entry_points
-else:
-    from importlib.metadata import entry_points
+from importlib.metadata import entry_points
 
 
 class LoaderNotFoundError(Exception):

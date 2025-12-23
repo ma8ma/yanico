@@ -1,6 +1,6 @@
 """Unittest of __token__ session."""
 
-#  Copyright 2024 Masayuki Yamamoto
+#  Copyright (C) 2024-2025 Masayuki Yamamoto
 #
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -14,16 +14,11 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-import sys
 import unittest
+from importlib.metadata import entry_points
 
 from yanico.session import token
 from yanico.session import UserSessionNotFoundError
-
-if sys.version_info < (3, 10):
-    from importlib_metadata import entry_points
-else:
-    from importlib.metadata import entry_points
 
 
 class TestLoad(unittest.TestCase):

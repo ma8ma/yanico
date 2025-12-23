@@ -1,6 +1,6 @@
 """Unittest of firefox session."""
 
-#  Copyright 2015-2016 Masayuki Yamamoto
+#  Copyright (C) 2015-2025 Masayuki Yamamoto
 #
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -16,17 +16,12 @@
 
 import os.path
 import sqlite3
-import sys
 import unittest
+from importlib.metadata import entry_points
 from unittest import mock
 
 from yanico.session import firefox
 from yanico.session import UserSessionNotFoundError
-
-if sys.version_info < (3, 10):
-    from importlib_metadata import entry_points
-else:
-    from importlib.metadata import entry_points
 
 
 def _stub_db():

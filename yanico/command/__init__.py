@@ -1,6 +1,6 @@
 """Command entry point."""
 
-#  Copyright 2015 Masayuki Yamamoto
+#  Copyright (C) 2015-2025 Masayuki Yamamoto
 #
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -15,14 +15,9 @@
 #  limitations under the License.
 
 import argparse
-import sys
+from importlib.metadata import entry_points
 
 import yanico
-
-if sys.version_info < (3, 10):
-    from importlib_metadata import entry_points
-else:
-    from importlib.metadata import entry_points
 
 
 def create_main_parser():
