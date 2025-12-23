@@ -1,4 +1,4 @@
-#  Copyright 2015-2024 Masayuki Yamamoto
+#  Copyright (C) 2015-2025 Masayuki Yamamoto
 #
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ name = "yanico"
 dynamic = ["version"]
 description = "Yet Another Niconico-douga Command-line Interface"
 readme = "README.rst"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 license = {file = "LICENSE"}
 keywords = ["cli", "comment", "niconico", "video"]
 authors = [
@@ -37,16 +37,15 @@ classifiers = [
   "Operating System :: POSIX",
   "Programming Language :: Python",
   "Programming Language :: Python :: 3",
-  "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
   "Topic :: Internet :: WWW/HTTP",
   "Topic :: Internet :: WWW/HTTP :: Session",
 ]
 dependencies = [
-  'importlib-metadata>=4.6.0; python_version<"3.10"',
 ]
 
 [project.optional-dependencies]
@@ -81,10 +80,10 @@ exclude = ["tests"]
 
 [tool.black]
 line-length = 88
-target-version = ["py39", "py310", "py311", "py312", "py313"]
+target-version = ["py310", "py311", "py312", "py313", "py314"]
 
 [tool.mypy]
-python_version = "3.9"
+python_version = "3.10"
 
 [tool.pylint.format]
 max-line-length = "88"

@@ -39,7 +39,7 @@ Feature
 
 Requirement
 -----------
-* Python_ (バージョン3.9以降)
+* Python_ (バージョン3.10以降)
 * pip_ (バージョン10以降)
 * setuptools_ (バージョン 61.0.0 以降)
 * setuptools_scm_
@@ -128,17 +128,15 @@ Code formatting
 What's New
 ----------
 
+**v0.3.0 (2025-12-23)**
+
+* Python 3.9のサポートを終了しました。
+
+
 **v0.2.0 (2024-12-31)**
 
 * Python 3.8のサポートを終了しました。
 * `user_session` を直接指定するセッションタイプ `__token__` を追加しました。
-
-
-**v0.1.0 (2024-08-06)**
-
-* README.rst に開発ツールのインストールと使い方の説明を追加しました。
-* 廃止予定の `pkg_resources` のかわりに `importlib.metadata` を使うように修正しました。
-* The Uncompromising Code Formatter black を使ってソースコードを整形しました。
 
 
 以前のバージョンでの変更は `CHANGES.ja.md`_ を見てください。
@@ -151,7 +149,7 @@ TODO
 * コマンドを追加する方法のドキュメントを書く (v1.0.0までには書く)
 
 
-Copyright 2015-2024 Masayuki Yamamoto
+Copyright (C) 2015-2025 Masayuki Yamamoto
 
 
 .. References
